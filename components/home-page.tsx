@@ -58,8 +58,11 @@ export function HomePage() {
 
         <div className="marquee" aria-label="Capabilities">
           <div>
-            Custom websites <b>{'</>'}</b> E-commerce <b>{'</>'}</b> Landing pages <b>{'</>'}</b> Portfolios <b>{'</>'}</b> AI automation <b>{'</>'}</b> Dashboards{' '}
-            <b>{'</>'}</b>
+            {Array.from({ length: 4 }).map((_, i) => (
+              <span key={i}>
+                Custom websites <b>{'</>'}</b> E-commerce <b>{'</>'}</b> Landing pages <b>{'</>'}</b> Portfolios <b>{'</>'}</b> AI automation <b>{'</>'}</b> Dashboards <b>{'</>'}</b>{' '}
+              </span>
+            ))}
           </div>
         </div>
 
