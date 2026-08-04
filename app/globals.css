@@ -26,9 +26,9 @@ button { color:inherit; }
 :focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
 .skip-link { position:fixed; left:1rem; top:-5rem; z-index:100; background:var(--primary); color:var(--primary-foreground); padding:.75rem 1rem; }
 .skip-link:focus { top:1rem; }
-.site-header { position:sticky; top:0; z-index:50; height:76px; display:flex; align-items:center; gap:2rem; padding:0 clamp(1.25rem,4vw,2.5rem); border-bottom:1px solid var(--border); background:rgba(246,248,249,.94); backdrop-filter:blur(14px); }
-.brand { display:flex; align-items:center; margin-right:auto; height:60px; overflow:hidden; }
-.brand img { width:155px; height:auto; }
+.site-header { position:sticky; top:0; z-index:50; height:90px; display:flex; align-items:center; gap:2rem; padding:0 clamp(1.25rem,4vw,2.5rem); border-bottom:1px solid var(--border); background:rgba(246,248,249,.94); backdrop-filter:blur(14px); }
+.brand { display:flex; align-items:center; margin-right:auto; height:100%; }
+.brand img { height:68px; width:auto; }
 .desktop-nav { display:flex; align-items:center; gap:1.5rem; font-size:.82rem; font-weight:600; }
 .desktop-nav a { position:relative; }
 .desktop-nav a:after { content:''; position:absolute; left:0; right:100%; bottom:-4px; height:1px; background:var(--accent); transition:right .3s; }
@@ -40,7 +40,7 @@ button { color:inherit; }
 .button.secondary:hover { background:var(--secondary); }
 .menu-button,.mobile-nav { display:none; }
 .hero,.section,footer { max-width:1280px; margin-inline:auto; padding-inline:clamp(1.25rem,4vw,2.5rem); }
-.hero { position:relative; isolation:isolate; min-height:calc(100vh - 76px); display:grid; grid-template-columns:7fr 5fr; align-items:center; gap:clamp(3rem,7vw,7rem); padding-block:clamp(3.5rem,7vw,5.5rem); }
+.hero { position:relative; isolation:isolate; min-height:calc(100vh - 90px); display:grid; grid-template-columns:7fr 5fr; align-items:center; gap:clamp(3rem,7vw,7rem); padding-block:clamp(3.5rem,7vw,5.5rem); }
 .hero:before { content:''; position:absolute; top:0; bottom:0; left:calc(50% - 50vw); width:100vw; z-index:-1; background:
   radial-gradient(600px circle at var(--gx,80%) var(--gy,30%),rgba(79,195,226,.10),transparent 65%),
   radial-gradient(600px circle at 85% -10%,rgba(79,195,226,.16),transparent 70%),
@@ -146,6 +146,9 @@ html.has-cursor,html.has-cursor a,html.has-cursor button,html.has-cursor summary
 .cursor-ring span { font:500 .6rem var(--font-mono),monospace; letter-spacing:.14em; white-space:nowrap; color:var(--primary-foreground); opacity:0; }
 .cursor-ring.is-pill { width:112px; height:34px; background:var(--primary); border-color:var(--primary); }
 .cursor-ring.is-pill span { opacity:1; }
+@media (hover: none) and (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none !important; }
+}
 
 /* ---------- section rail + header progress ---------- */
 .rail { display:none; }
@@ -156,9 +159,9 @@ html.has-cursor,html.has-cursor a,html.has-cursor button,html.has-cursor summary
 .rail a.is-active .rail-dot { background:var(--accent); border-color:var(--accent); transform:scale(1.3); }
 @media(min-width:1024px){ .rail { position:fixed; right:1.1rem; top:50%; transform:translateY(-50%); z-index:40; display:flex; flex-direction:column; align-items:flex-end; gap:.85rem; } }
 .site-header { transition:height .3s cubic-bezier(.16,1,.3,1),box-shadow .3s; }
-.site-header.is-shrink { height:64px; box-shadow:0 8px 24px rgba(11,32,57,.07); }
-.brand img { transition:width .3s cubic-bezier(.16,1,.3,1); }
-.site-header.is-shrink .brand img { width:132px; }
+.site-header.is-shrink { height:76px; box-shadow:0 8px 24px rgba(11,32,57,.07); }
+.brand img { transition:height .3s cubic-bezier(.16,1,.3,1); }
+.site-header.is-shrink .brand img { height:56px; }
 
 .menu-button { display:none; background:none; border:none; color:var(--foreground); cursor:pointer; }
 .desktop-nav { display:flex; align-items:center; gap:2rem; }
@@ -166,7 +169,10 @@ html.has-cursor,html.has-cursor a,html.has-cursor button,html.has-cursor summary
 @media(max-width:1024px){
   .desktop-nav, .desktop-cta { display:none; }
   .menu-button { display:flex; align-items:center; justify-content:center; }
-  .site-header { justify-content:space-between; }
+  .site-header { justify-content:space-between; height:80px; }
+  .site-header.is-shrink { height:70px; }
+  .brand img { height:58px; }
+  .site-header.is-shrink .brand img { height:50px; }
 }
 .header-progress { position:absolute; left:0; bottom:-1px; width:100%; height:2px; transform:scaleX(var(--progress,0)); transform-origin:left; background:linear-gradient(90deg,var(--primary),var(--accent) 60%,#7FD4E8); }
 .desktop-nav a.is-active { color:var(--accent); }
@@ -175,7 +181,7 @@ html.has-cursor,html.has-cursor a,html.has-cursor button,html.has-cursor summary
 /* ---------- mobile navigation overlay ---------- */
 html.menu-open,html.menu-open body { overflow:hidden; }
 @media(max-width:900px){
-  .mobile-nav { position:fixed; inset:76px 0 0; z-index:60; display:flex; flex-direction:column; justify-content:space-between; gap:2rem; overflow-y:auto; padding:1.75rem clamp(1.25rem,5vw,2rem) 2.25rem; background:var(--background); isolation:isolate; animation:menu-in .32s cubic-bezier(.16,1,.3,1); }
+  .mobile-nav { position:fixed; inset:80px 0 0; z-index:60; display:flex; flex-direction:column; justify-content:space-between; gap:2rem; overflow-y:auto; padding:1.75rem clamp(1.25rem,5vw,2rem) 2.25rem; background:var(--background); isolation:isolate; animation:menu-in .32s cubic-bezier(.16,1,.3,1); }
   .mobile-nav:before { content:''; position:absolute; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(520px circle at 88% 4%,rgba(79,195,226,.12),transparent 70%),linear-gradient(to right,rgba(14,34,51,.045) 1px,transparent 1px) 0 0/56px 56px,linear-gradient(to bottom,rgba(14,34,51,.045) 1px,transparent 1px) 0 0/56px 56px; }
   .mobile-nav ul { display:flex; flex-direction:column; margin:0; padding:0; list-style:none; }
   .mobile-nav li { border-bottom:1px solid var(--border); opacity:0; animation:menu-item .45s cubic-bezier(.16,1,.3,1) forwards; animation-delay:calc(60ms + var(--i)*45ms); }
