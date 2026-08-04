@@ -127,7 +127,8 @@ function Preloader() {
 
   useEffect(() => {
     const seen = sessionStorage.getItem('tc-preloaded')
-    if (seen || reducedMotion() || saveData()) {
+    // Always show preloader in development so we can see the animation on refresh
+    if ((seen && process.env.NODE_ENV === 'production') || reducedMotion() || saveData()) {
       setPhase('hidden')
       document.documentElement.classList.remove('is-loading')
       return
@@ -177,7 +178,8 @@ function Preloader() {
           const scaleX = toRect.width / fromRect.width
           const scaleY = toRect.height / fromRect.height
 
-          document.documentElement.classList.replace('is-loading', 'is-animating-in')
+          document.documentElement.classList.remove('is-loading')
+          document.documentElement.classList.add('is-animating-in')
           
           logoRef.current.style.transformOrigin = 'top left'
           const anim = logoRef.current.animate([
