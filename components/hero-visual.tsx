@@ -9,7 +9,7 @@ export function HeroVisual() {
       <span className="tick tr" />
       <span className="tick bl" />
       <span className="tick br" />
-      <div style={{ display: 'flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Image 
           src="/company-logo.png" 
           width={500} 
