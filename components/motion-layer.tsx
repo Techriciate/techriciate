@@ -121,30 +121,58 @@ function Rail({ sections }: { sections: RailSection[] }) {
 
 /** Paper curtain with a stroke-drawn mark and a mono counter. Skipped on revisit. */
 function Preloader() {
-  const [phase, setPhase] = useState<'hidden' | 'run' | 'lift'>('hidden')
+  const [phase, setPhase] = useState<'hidden' | 'run' | 'lift'>('run')
   const [percent, setPercent] = useState(0)
 
   useEffect(() => {
     const seen = sessionStorage.getItem('tc-preloaded')
-    if (seen || reducedMotion() || saveData()) return
+    if (seen || reducedMotion() || saveData()) {
+      setPhase('hidden')
+      document.documentElement.classList.remove('is-loading')
+      return
+    }
+    
     sessionStorage.setItem('tc-preloaded', '1')
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setPhase('run')
     document.documentElement.classList.add('is-loading')
-    const start = performance.now()
+
     let frame = 0
+    let progress = 0
+    let isLoaded = false
+
+    Promise.all([
+      document.fonts ? document.fonts.ready : Promise.resolve()
+    ]).then(() => {
+      if (document.readyState === 'complete') {
+        isLoaded = true
+      } else {
+        window.addEventListener('load', () => { isLoaded = true })
+      }
+    })
+
+    const start = performance.now()
     const step = () => {
-      const progress = Math.min(1, (performance.now() - start) / 950)
+      const elapsed = performance.now() - start
+      
+      if (!isLoaded && progress < 0.85) {
+        progress = elapsed / 1500 // Ease up to 85% over 1.5s
+        progress = Math.min(progress, 0.85)
+      } else if (isLoaded) {
+        progress += 0.04 // Quickly finish once loaded
+      }
+      
+      progress = Math.min(progress, 1)
       setPercent(Math.round(progress * 100))
+
       if (progress < 1) {
         frame = requestAnimationFrame(step)
-        return
+      } else {
+        setPhase('lift')
+        document.documentElement.classList.remove('is-loading')
+        window.setTimeout(() => setPhase('hidden'), 700)
       }
-      setPhase('lift')
-      document.documentElement.classList.remove('is-loading')
-      window.setTimeout(() => setPhase('hidden'), 700)
     }
     frame = requestAnimationFrame(step)
+
     return () => {
       cancelAnimationFrame(frame)
       document.documentElement.classList.remove('is-loading')
