@@ -160,6 +160,15 @@ html.has-cursor,html.has-cursor a,html.has-cursor button,html.has-cursor summary
 .site-header.is-shrink { height:64px; box-shadow:0 8px 24px rgba(11,32,57,.07); }
 .brand img { transition:width .3s cubic-bezier(.16,1,.3,1); }
 .site-header.is-shrink .brand img { width:132px; }
+
+.menu-button { display:none; background:none; border:none; color:var(--foreground); cursor:pointer; }
+.desktop-nav { display:flex; align-items:center; gap:2rem; }
+
+@media(max-width:1024px){
+  .desktop-nav, .desktop-cta { display:none; }
+  .menu-button { display:flex; align-items:center; justify-content:center; }
+  .site-header { justify-content:space-between; }
+}
 .header-progress { position:absolute; left:0; bottom:-1px; width:100%; height:2px; transform:scaleX(var(--progress,0)); transform-origin:left; background:linear-gradient(90deg,var(--primary),var(--accent) 60%,#7FD4E8); }
 .desktop-nav a.is-active { color:var(--accent); }
 .desktop-nav a.is-active:after { right:0; }

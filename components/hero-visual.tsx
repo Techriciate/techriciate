@@ -24,6 +24,7 @@ export function HeroVisual() {
     const wide = window.matchMedia('(min-width: 1024px)').matches
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const capable = (navigator.hardwareConcurrency ?? 4) >= 2
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setEnable3d(wide && !reduced && capable && hasWebgl())
     if (!wide) return
     const hero = wrapper.current?.closest<HTMLElement>('.hero')

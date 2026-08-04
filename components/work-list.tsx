@@ -17,6 +17,7 @@ export function WorkList() {
     if (!node) return
     if (!window.matchMedia('(min-width: 1024px)').matches || !window.matchMedia('(pointer: fine)').matches) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFloating(true)
     const target = { x: 0, y: 0 }
     const eased = { x: 0, y: 0 }

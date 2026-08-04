@@ -128,6 +128,7 @@ function Preloader() {
     const seen = sessionStorage.getItem('tc-preloaded')
     if (seen || reducedMotion() || saveData()) return
     sessionStorage.setItem('tc-preloaded', '1')
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPhase('run')
     document.documentElement.classList.add('is-loading')
     const start = performance.now()

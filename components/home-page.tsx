@@ -25,7 +25,6 @@ const RAIL: RailSection[] = [
 const ENGAGEMENT = ['A scoping call', 'A fixed, written proposal', 'Weekly build updates', 'Launch', 'Care']
 
 export function HomePage() {
-  const demos = site.projects.filter((project) => /demo/i.test(project.status)).length
   const facts = `${site.projects.length} PROJECTS IN PIPELINE · 100% CUSTOM CODE`
 
   return (

@@ -58,7 +58,7 @@ export function SiteHeader() {
   return (
     <header className={shrink ? 'site-header is-shrink' : 'site-header'} ref={header}>
       <a className="brand" href="#top" aria-label="Techriciate home">
-        <Image src="/company-logo.png" width={180} height={96} alt="Techriciate Digital Agency" priority />
+        <Image src="/company-logo.png" width={180} height={96} alt="Techriciate Digital Agency" priority style={{ objectFit: 'contain' }} />
       </a>
       <nav className="desktop-nav" aria-label="Main navigation">
         {site.nav.map((item) => (
