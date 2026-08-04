@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { MarkSvg } from './mark-svg'
+import Image from 'next/image'
 
 export type RailSection = { id: string; label: string }
 
@@ -154,7 +154,7 @@ function Preloader() {
   if (phase === 'hidden') return null
   return (
     <div className={phase === 'lift' ? 'preloader is-lift' : 'preloader'} role="status" aria-live="polite">
-      <MarkSvg className="preloader-mark" draw />
+      <Image src="/company-logo.png" width={220} height={117} alt="Techriciate" className="preloader-mark" priority />
       <p className="preloader-count">{`${String(percent).padStart(3, '0')}%`}</p>
       <span className="sr-only">Loading Techriciate</span>
     </div>

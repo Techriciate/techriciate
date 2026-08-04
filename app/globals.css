@@ -201,7 +201,11 @@ html.menu-open,html.menu-open body { overflow:hidden; }
 html.is-loading { overflow:hidden; }
 .preloader { position:fixed; inset:0; z-index:120; display:grid; place-content:center; justify-items:center; gap:1.25rem; background:var(--background); transition:transform .7s cubic-bezier(.16,1,.3,1); }
 .preloader.is-lift { transform:translateY(-100%); }
-.preloader-mark { width:108px; color:var(--accent); }
+.preloader-mark { width:220px; height:auto; color:var(--accent); animation: pulse-logo 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+@keyframes pulse-logo {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .6; transform: scale(.97); }
+}
 .preloader-count { font:500 .74rem var(--font-mono),monospace; letter-spacing:.2em; color:var(--muted-foreground); }
 
 /* ---------- hover set ---------- */
