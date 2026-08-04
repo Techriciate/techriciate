@@ -12,11 +12,16 @@ const schema = z.object({
 const attempts = new Map<string, number[]>()
 
 export async function POST(request: Request) {
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
+  const ip = request.headers.get('x-real-ip') ?? request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
   const now = Date.now()
   const recent = (attempts.get(ip) ?? []).filter((time) => now - time < 3_600_000)
   if (recent.length >= 3) return NextResponse.json({ ok: false }, { status: 429 })
   attempts.set(ip, [...recent, now])
+
+  const contentLength = Number(request.headers.get('content-length') || '0')
+  if (contentLength > 10240) { // Max 10KB for text form
+    return NextResponse.json({ ok: false, message: 'Payload too large' }, { status: 413 })
+  }
 
   const form = await request.formData()
   const result = schema.safeParse(Object.fromEntries(form.entries()))
