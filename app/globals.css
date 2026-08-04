@@ -198,16 +198,31 @@ html.menu-open,html.menu-open body { overflow:hidden; overscroll-behavior:none; 
 @keyframes menu-item { from { opacity:0; transform:translateY(10px) } to { opacity:1; transform:none } }
 
 /* ---------- preloader ---------- */
-html.is-loading { overflow:hidden; }
-.preloader { position:fixed; inset:0; z-index:120; display:none; place-content:center; justify-items:center; gap:1.25rem; background:var(--background); transition:transform .7s cubic-bezier(.16,1,.3,1); }
-html.is-loading .preloader, .preloader.is-lift { display:grid; }
+html.is-loading, html.is-animating-in { overflow:hidden; }
+.preloader { position:fixed; inset:0; z-index:120; display:none; place-content:center; justify-items:center; gap:1.25rem; background:var(--background); transition:background-color 0.8s ease; }
+html.is-loading .preloader, html.is-animating-in .preloader { display:grid; }
+html.is-animating-in .preloader { background-color:transparent; pointer-events:none; }
 .preloader.is-lift { transform:translateY(-100%); }
-.preloader-mark { width:220px; height:auto; color:var(--accent); animation: pulse-logo 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.preloader-mark { width:220px; height:auto; color:var(--accent); animation: pulse-logo 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; will-change: transform; }
+html.is-animating-in .preloader-mark { animation:none; }
 @keyframes pulse-logo {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: .6; transform: scale(.97); }
 }
-.preloader-count { font:500 .74rem var(--font-mono),monospace; letter-spacing:.2em; color:var(--muted-foreground); }
+.preloader-count { font:500 .74rem var(--font-mono),monospace; letter-spacing:.2em; color:var(--muted-foreground); transition: opacity 0.3s; }
+html.is-animating-in .preloader-count { opacity: 0; }
+
+/* Main layout animation orchestrations */
+html.is-loading #site-header-logo, html.is-animating-in #site-header-logo { opacity: 0; }
+html.is-loading .desktop-nav, html.is-loading .desktop-cta, html.is-loading .menu-button, html.is-loading .hero-copy, html.is-loading .hero-mark { opacity: 0; transform: translateY(20px); }
+html.is-animating-in .desktop-nav, html.is-animating-in .desktop-cta, html.is-animating-in .menu-button, html.is-animating-in .hero-copy, html.is-animating-in .hero-mark {
+  opacity: 1; transform: translateY(0); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+html.is-animating-in .desktop-nav { transition-delay: 0.1s; }
+html.is-animating-in .desktop-cta { transition-delay: 0.15s; }
+html.is-animating-in .menu-button { transition-delay: 0.15s; }
+html.is-animating-in .hero-copy { transition-delay: 0.2s; }
+html.is-animating-in .hero-mark { transition-delay: 0.25s; }
 
 /* ---------- hover set ---------- */
 .button.primary { background-image:linear-gradient(90deg,#0B7FA0,#0B7FA0); background-size:0 100%; background-repeat:no-repeat; transition:background-size .4s cubic-bezier(.16,1,.3,1),color .3s; }

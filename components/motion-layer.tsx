@@ -123,6 +123,7 @@ function Rail({ sections }: { sections: RailSection[] }) {
 function Preloader() {
   const [phase, setPhase] = useState<'hidden' | 'run' | 'lift'>('run')
   const [percent, setPercent] = useState(0)
+  const logoRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
     const seen = sessionStorage.getItem('tc-preloaded')
@@ -154,10 +155,10 @@ function Preloader() {
       const elapsed = performance.now() - start
       
       if (!isLoaded && progress < 0.85) {
-        progress = elapsed / 1500 // Ease up to 85% over 1.5s
+        progress = elapsed / 1500
         progress = Math.min(progress, 0.85)
       } else if (isLoaded) {
-        progress += 0.04 // Quickly finish once loaded
+        progress += 0.04
       }
       
       progress = Math.min(progress, 1)
@@ -166,9 +167,36 @@ function Preloader() {
       if (progress < 1) {
         frame = requestAnimationFrame(step)
       } else {
-        setPhase('lift')
-        document.documentElement.classList.remove('is-loading')
-        window.setTimeout(() => setPhase('hidden'), 700)
+        const headerBrand = document.getElementById('site-header-logo')
+        if (headerBrand && logoRef.current) {
+          const fromRect = logoRef.current.getBoundingClientRect()
+          const toRect = headerBrand.getBoundingClientRect()
+
+          const deltaX = toRect.left - fromRect.left
+          const deltaY = toRect.top - fromRect.top
+          const scaleX = toRect.width / fromRect.width
+          const scaleY = toRect.height / fromRect.height
+
+          document.documentElement.classList.replace('is-loading', 'is-animating-in')
+          
+          logoRef.current.style.transformOrigin = 'top left'
+          const anim = logoRef.current.animate([
+            { transform: 'translate(0, 0) scale(1)' },
+            { transform: `translate(${deltaX}px, ${deltaY}px) scale(${scaleX}, ${scaleY})` }
+          ], {
+            duration: 800,
+            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+            fill: 'forwards'
+          })
+          
+          anim.onfinish = () => {
+            setPhase('hidden')
+            document.documentElement.classList.remove('is-animating-in')
+          }
+        } else {
+          document.documentElement.classList.remove('is-loading')
+          setPhase('hidden')
+        }
       }
     }
     frame = requestAnimationFrame(step)
@@ -176,13 +204,14 @@ function Preloader() {
     return () => {
       cancelAnimationFrame(frame)
       document.documentElement.classList.remove('is-loading')
+      document.documentElement.classList.remove('is-animating-in')
     }
   }, [])
 
   if (phase === 'hidden') return null
   return (
     <div className={phase === 'lift' ? 'preloader is-lift' : 'preloader'} role="status" aria-live="polite">
-      <Image src="/company-logo.png" width={220} height={117} alt="Techriciate" className="preloader-mark" priority />
+      <Image ref={logoRef} src="/company-logo.png" width={220} height={117} alt="Techriciate" className="preloader-mark" priority />
       <p className="preloader-count">{`${String(percent).padStart(3, '0')}%`}</p>
       <span className="sr-only">Loading Techriciate</span>
     </div>
