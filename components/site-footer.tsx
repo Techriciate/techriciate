@@ -2,14 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUp, ArrowUpRight } from 'lucide-react'
 import { site } from '@/content/site'
-import { MarkSvg } from '@/components/mark-svg'
 import { MaskedWords } from '@/components/section-heading'
 
 export function SiteFooter() {
   return (
     <>
       <section className="cta-band" data-tone="navy" aria-labelledby="cta-title">
-        <MarkSvg className="cta-mark" />
+        <Image src="/company-logo.png" alt="" width={600} height={319} className="cta-mark" style={{ objectFit: 'contain', opacity: 0.15 }} />
         <div className="cta-inner" data-reveal>
           <h2 className="masked" id="cta-title">
             <MaskedWords text="Ready to start your project?" underline="Ready" />
