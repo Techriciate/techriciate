@@ -7,8 +7,24 @@ export function ContactForm() {
   const [state, setState] = useState<'idle'|'sending'|'sent'|'error'>('idle')
   async function submit(formData: FormData) {
     setState('sending')
-    const response = await fetch('/api/contact', { method:'POST', body: formData })
-    setState(response.ok ? 'sent' : 'error')
+    
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const type = formData.get('type')
+    const message = formData.get('message')
+
+    const subject = encodeURIComponent(`New Inquiry: ${type}`)
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nProject Type: ${type}\n\nMessage:\n${message}`
+    )
+    
+    // Option 1: Open default Email app
+    window.location.href = `mailto:worknikhilgupta06@gmail.com?subject=${subject}&body=${body}`
+
+    // Option 2: Open WhatsApp (Uncomment this and comment the line above to use WhatsApp instead)
+    // window.open(`https://wa.me/917039638435?text=${body}`, '_blank')
+
+    setTimeout(() => setState('sent'), 500)
   }
   return <form className="contact-form" action={submit}>
     <div className="form-grid"><label>Name<input name="name" required minLength={2} autoComplete="name" /></label><label>Email<input name="email" required type="email" autoComplete="email" /></label></div>

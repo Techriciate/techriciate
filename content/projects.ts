@@ -1,10 +1,18 @@
-export type WorkStudy = {
+export type Project = {
+  id: string
   slug: string
   index: string
-  name: string
+  title: string
+  description: string
   industry: string
   status: string
-  tagline: string
+  scope: string
+  liveUrl?: string
+  images: string[]
+  thumbnail: string
+  heroImage: string
+
+  // Case study fields
   problem: string
   research: string
   solution: string
@@ -18,14 +26,25 @@ export type WorkStudy = {
   future: string
 }
 
-export const workStudies: WorkStudy[] = [
+export const projects: Project[] = [
   {
+    id: '1',
     slug: 'bloom-blossom',
     index: '01',
-    name: 'Bloom Blossom',
+    title: 'Bloom Blossom',
+    description: 'A clean, photo-led storefront designed for floral arrangements and hampers.',
     industry: 'Gifting & Flowers',
     status: 'Under negotiation (Demo completed)',
-    tagline: 'A clean, photo-led storefront designed for floral arrangements.',
+    scope: 'Demonstration',
+    liveUrl: 'https://bloomblossom.vercel.app/',
+    images: [
+      '/bloom-ss/Hero-1.png',
+      '/bloom-ss/2.png',
+      '/bloom-ss/3.png',
+      '/bloom-ss/4.png',
+    ],
+    thumbnail: '/bloom-ss/Hero-1.png',
+    heroImage: '/bloom-ss/Hero-1.png',
     problem: 'Bloom Blossom relied on third-party marketplace platforms with high per-order fees and limited branding customization.',
     research: 'We analyzed customer browsing patterns in the flower and gifting sector, focusing on mobile order flows and category navigation.',
     solution: 'A custom e-commerce storefront featuring occasion-based product browsing, hamper customizers, and an intuitive checkout flow.',
@@ -39,12 +58,23 @@ export const workStudies: WorkStudy[] = [
     future: 'Payment gateway integration, automated inventory sync, WhatsApp order updates, and seasonal marketing layouts.',
   },
   {
+    id: '2',
     slug: 'perfect-buy-factory-outlet',
     index: '02',
-    name: 'Perfect Buy Factory Outlet',
+    title: 'Perfect Buy Factory Outlet',
+    description: 'A high-capacity digital catalog designed for wholesale and discount retail.',
     industry: 'E-commerce',
     status: 'Under negotiation',
-    tagline: 'A high-capacity digital catalog designed for wholesale and discount retail.',
+    scope: 'Digital product',
+    liveUrl: 'https://perfect-buy-website.vercel.app/',
+    images: [
+      '/perfect-ss/Hero-1.png',
+      '/perfect-ss/2.png',
+      '/perfect-ss/3.png',
+      '/perfect-ss/4.png',
+    ],
+    thumbnail: '/perfect-ss/Hero-1.png',
+    heroImage: '/perfect-ss/Hero-1.png',
     problem: 'A factory outlet offering discounted retail goods with sales restricted to a single physical storefront.',
     research: 'We reviewed discount retail shopping behaviors to design fast category filters and clear discount callouts for mobile users.',
     solution: 'A demonstration online catalog featuring clear category hierarchies, discount labels, and scalable product listings.',
@@ -58,15 +88,20 @@ export const workStudies: WorkStudy[] = [
     future: 'Online payment gateway, POS inventory synchronization, click and collect fulfillment, and automated promotions.',
   },
   {
+    id: '3',
     slug: 'alkesh-dinesh-mody-institute',
     index: '03',
-    name: 'Alkesh Dinesh Mody Institute',
+    title: 'Alkesh Dinesh Mody Institute',
+    description: 'An accessible academic web portal for prospective students and faculty.',
     industry: 'Education',
     status: 'In discussion',
-    tagline: 'An accessible academic web portal for prospective students and faculty.',
+    scope: 'Proposal',
+    images: [],
+    thumbnail: '',
+    heroImage: '',
     problem: 'The institute needed an updated web portal to organize institutional information and serve prospective students effectively.',
     research: 'We identified primary user journeys for students and parents, emphasizing course details, admission steps, and contact info.',
-    solution: 'A modern web portal layout offering organized academic course structures, admission guidelines, and direct inquiry options.',
+    solution: 'A proposed modern web portal layout offering organized academic course structures, admission guidelines, and direct inquiry options.',
     design: 'An accessible, professional visual identity focused on content clarity and easy navigation.',
     development: 'Accessible component architecture paired with a user-friendly CMS so staff can update announcements independently.',
     stack: ['Next.js', 'Tailwind CSS', 'Headless CMS', 'Vercel'],
@@ -76,12 +111,23 @@ export const workStudies: WorkStudy[] = [
     future: 'Student admissions portal, campus notices board, faculty directory, and multi-language support.',
   },
   {
+    id: '4',
     slug: 'thread-culture',
     index: '04',
-    name: 'Thread Culture',
+    title: 'Thread Culture',
+    description: 'An editorial collection showcase built for apparel brand releases.',
     industry: 'Fashion',
     status: 'Demo prototype',
-    tagline: 'An editorial collection showcase built for apparel brand releases.',
+    scope: 'Demonstration',
+    liveUrl: 'https://thread-culture-studio.lovable.app/',
+    images: [
+      '/thread-ss/Hero-1.png',
+      '/thread-ss/2.png',
+      '/thread-ss/3.png',
+      '/thread-ss/4.png',
+    ],
+    thumbnail: '/thread-ss/Hero-1.png',
+    heroImage: '/thread-ss/Hero-1.png',
     problem: 'An independent fashion label needed a dedicated digital showcase for collection releases and lookbooks.',
     research: 'We evaluated mobile engagement for apparel brands, focusing on lookbook layouts, product galleries, and drop previews.',
     solution: 'A prototype catalog featuring full-width visual layouts, collection spotlights, and minimal navigation UI.',
@@ -95,7 +141,6 @@ export const workStudies: WorkStudy[] = [
   },
 ]
 
-export function getWorkStudy(slug: string) {
-  return workStudies.find((study) => study.slug === slug)
+export function getProject(slug: string): Project | undefined {
+  return projects.find((p) => p.slug === slug)
 }
-

@@ -3,19 +3,14 @@ export const site = {
   availability: true,
   region: 'India (IST), working with clients worldwide',
   positioning: 'We build modern, custom websites and web applications to help businesses grow.',
-  contact: { email: 'hello@techriciate.com', tel: '+91 70396 38435', telHref: '+917039638435' },
+  contact: { email: 'worknikhilgupta06@gmail.com', tel: '+91 70396 38435', telHref: '+917039638435' },
   hero: {
     kicker: '(00) TECHRICIATE DIGITAL STUDIO',
     title: 'Your business, built for the web.',
     sub: 'We design and develop custom websites, e-commerce stores, and practical AI tools tailored to your business goals.',
     micro: 'CUSTOM DEVELOPMENT · CLEAR TIMELINES · PRACTICAL AI INTEGRATION',
   },
-  projects: [
-    { slug: 'bloom-blossom', index: '01', name: 'Bloom Blossom', industry: 'Gifting & Flowers', status: 'Under negotiation (Demo completed)', thesis: 'A clean, photo-led storefront designed for floral arrangements and hampers.' },
-    { slug: 'perfect-buy-factory-outlet', index: '02', name: 'Perfect Buy Factory Outlet', industry: 'E-commerce', status: 'Under negotiation', thesis: 'A high-capacity digital catalog designed for wholesale and discount retail.' },
-    { slug: 'alkesh-dinesh-mody-institute', index: '03', name: 'Alkesh Dinesh Mody Institute', industry: 'Education', status: 'In discussion', thesis: 'An accessible academic web portal for prospective students and faculty.' },
-    { slug: 'thread-culture', index: '04', name: 'Thread Culture', industry: 'Fashion', status: 'Demo prototype', thesis: 'An editorial collection showcase built for apparel brand releases.' },
-  ],
+
   services: [
     { title: 'Web Development', items: ['Business Websites', 'Corporate Portals', 'Custom Web Applications'] },
     { title: 'E-Commerce', items: ['Online Stores', 'Product Catalogs', 'Payment Gateway Setup', 'Inventory Systems'] },
@@ -56,5 +51,5 @@ export const site = {
   ],
 } as const
 
-export type Project = (typeof site.projects)[number]
+
 

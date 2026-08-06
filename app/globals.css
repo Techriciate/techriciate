@@ -203,7 +203,7 @@ html.is-loading, html.is-animating-in { overflow:hidden; }
 html.is-loading .preloader, html.is-animating-in .preloader { display:grid; }
 html.is-animating-in .preloader { background-color:transparent; pointer-events:none; }
 .preloader.is-lift { transform:translateY(-100%); }
-.preloader-mark { width:220px; height:auto; color:var(--accent); animation: pulse-logo 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; will-change: transform; }
+.preloader-mark { color:var(--accent); animation: pulse-logo 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; will-change: transform; }
 html.is-animating-in .preloader-mark { animation:none; }
 @keyframes pulse-logo {
   0%, 100% { opacity: 1; transform: scale(1); }

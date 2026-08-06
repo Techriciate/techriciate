@@ -68,16 +68,18 @@ export function WorkCover({
   name,
   status,
   variant = 'card',
+  children
 }: {
   slug: string
   name: string
   status: string
   variant?: Variant
+  children?: React.ReactNode
 }) {
   const caption = `Concept preview: ${status}`
   return (
-    <figure className={`cover cover-${variant}`} data-slug={slug} aria-label={`${name}: concept preview`}>
-      <div className="cover-frame">
+    <figure className={`cover cover-${variant} w-full h-full relative`} data-slug={slug} aria-label={`${name}: concept preview`}>
+      <div className="cover-frame absolute inset-0 !w-full !h-full !max-w-none">
         {variant === 'thumb' ? null : (
           <div className="cover-bar">
             <span />
@@ -86,8 +88,8 @@ export function WorkCover({
             <em>concept preview</em>
           </div>
         )}
-        <div className="cover-body">
-          <Inner slug={slug} />
+        <div className="cover-body relative overflow-hidden">
+          {children || <Inner slug={slug} />}
         </div>
         <span className="tick tl" />
         <span className="tick br" />

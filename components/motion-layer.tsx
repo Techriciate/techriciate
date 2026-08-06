@@ -129,7 +129,7 @@ function Preloader() {
     const seen = sessionStorage.getItem('tc-preloaded')
     // Always show preloader in development so we can see the animation on refresh
     if ((seen && process.env.NODE_ENV === 'production') || reducedMotion() || saveData()) {
-      setPhase('hidden')
+      requestAnimationFrame(() => setPhase('hidden'))
       document.documentElement.classList.remove('is-loading')
       return
     }

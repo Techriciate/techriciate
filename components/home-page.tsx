@@ -1,5 +1,6 @@
 import { ArrowUpRight, Copy, Mail, Phone } from 'lucide-react'
 import { site } from '@/content/site'
+import { projects } from '@/content/projects'
 import { SectionHeading, MaskedWords } from '@/components/section-heading'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
@@ -25,7 +26,7 @@ const RAIL: RailSection[] = [
 const ENGAGEMENT = ['A scoping call', 'A fixed, written proposal', 'Weekly build updates', 'Launch', 'Care']
 
 export function HomePage() {
-  const facts = `${site.projects.length} PROJECTS IN PIPELINE · 100% CUSTOM CODE`
+  const facts = `${projects.length} PROJECTS IN PIPELINE · 100% CUSTOM CODE`
 
   return (
     <>
