@@ -70,7 +70,7 @@ export function SiteFooter() {
             </a>
             {' '}&{' '}
             <a href="https://www.linkedin.com/in/rudranarayan-sahu-42017a368/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>
-              Rudra Narayan Sahoo
+              Rudranarayan Sahu
             </a>
           </p>
           <a className="to-top" href="#top">
