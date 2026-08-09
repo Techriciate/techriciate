@@ -1,0 +1,33 @@
+'use server'
+
+export async function submitContactForm(formData: FormData) {
+  // Read the API key securely from environment variables (never exposed to the client)
+  const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
+  
+  if (!accessKey) {
+    console.error("Missing WEB3FORMS_ACCESS_KEY in environment variables");
+    return { success: false, error: "Server configuration error" };
+  }
+
+  formData.append("access_key", accessKey);
+  formData.append("subject", `New Inquiry: ${formData.get('type') || 'General'}`);
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+    
+    const data = await response.json();
+
+    if (data.success) {
+      return { success: true };
+    } else {
+      console.error("Form submission error", data);
+      return { success: false, error: data.message || "Failed to submit" };
+    }
+  } catch (error) {
+    console.error("Form fetch error", error);
+    return { success: false, error: "Network error" };
+  }
+}

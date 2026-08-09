@@ -63,16 +63,6 @@ export function SiteFooter() {
         </div>
         <div className="footer-bar">
           <p className="micro">© 2026 Techriciate Digital Agency</p>
-          <p className="micro">
-            Developed by{' '}
-            <a href="https://www.linkedin.com/in/alok-kumar-sahoo1445/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>
-              Alok Kumar Niranjan Sahoo
-            </a>
-            {' '}&{' '}
-            <a href="https://www.linkedin.com/in/rudranarayan-sahu-42017a368/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>
-              Rudranarayan Sahu
-            </a>
-          </p>
           <a className="to-top" href="#top">
             Back to top <ArrowUp />
           </a>
