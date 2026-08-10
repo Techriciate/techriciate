@@ -18,6 +18,18 @@ export async function submitContactForm(formData: FormData) {
       body: formData
     });
     
+    const contentType = response.headers.get("content-type") || "";
+    
+    if (!response.ok || !contentType.includes("application/json")) {
+      const text = await response.text();
+      console.error("--- Web3Forms Diagnostic Info ---");
+      console.error("Status:", response.status, response.statusText);
+      console.error("Content-Type:", contentType);
+      console.error("Body preview:", text.substring(0, 500));
+      console.error("---------------------------------");
+      return { success: false, error: "Server diagnostic mode: check logs" };
+    }
+
     const data = await response.json();
 
     if (data.success) {
