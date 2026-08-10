@@ -2,18 +2,36 @@
 
 import { useState } from 'react'
 import { site } from '@/content/site'
-import { submitContactForm } from '@/app/actions/contact'
 
 export function ContactForm() {
   const [state, setState] = useState<'idle'|'sending'|'sent'|'error'>('idle')
   async function submit(formData: FormData) {
     setState('sending')
     
-    const result = await submitContactForm(formData)
-    
-    if (result.success) {
-      setState('sent')
-    } else {
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "";
+    formData.append("access_key", accessKey);
+    formData.append("subject", `New Inquiry: ${formData.get('type') || 'General'}`);
+
+    const attachment = formData.get("attachment");
+    if (attachment instanceof File && (attachment.size === 0 || !attachment.name)) {
+      formData.delete("attachment");
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "Accept": "application/json"
+        }
+      });
+      
+      if (response.status === 200) {
+        setState('sent')
+      } else {
+        setState('error')
+      }
+    } catch (error) {
       setState('error')
     }
   }
