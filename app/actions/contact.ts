@@ -12,6 +12,12 @@ export async function submitContactForm(formData: FormData) {
   formData.append("access_key", accessKey);
   formData.append("subject", `New Inquiry: ${formData.get('type') || 'General'}`);
 
+  // Diagnostic change: Ensure we don't send an empty attachment file
+  const attachment = formData.get("attachment");
+  if (attachment instanceof File && (attachment.size === 0 || !attachment.name || attachment.name === "undefined")) {
+    formData.delete("attachment");
+  }
+
   try {
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
