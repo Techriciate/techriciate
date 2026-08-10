@@ -3,7 +3,7 @@ export const site = {
   availability: true,
   region: 'India (IST), working with clients worldwide',
   positioning: 'We build modern, custom websites and web applications to help businesses grow.',
-  contact: { email: 'worknikhilgupta06@gmail.com', tel: '+91 70396 38435', telHref: '+917039638435' },
+  contact: { email: 'info@techriciate.com', tel: '+91 70396 38435', telHref: '+917039638435' },
   hero: {
     kicker: '(00) TECHRICIATE DIGITAL STUDIO',
     title: 'Your business, built for the web.',
