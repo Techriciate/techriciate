@@ -39,56 +39,6 @@ function useReveal() {
   }, [])
 }
 
-/** Dot + hairline ring cursor. Desktop pointers only; native cursor otherwise. */
-function Cursor() {
-  const dot = useRef<HTMLDivElement>(null)
-  const ring = useRef<HTMLDivElement>(null)
-  const [label, setLabel] = useState('')
-
-  useEffect(() => {
-    if (reducedMotion() || !window.matchMedia('(pointer: fine)').matches) return
-    const root = document.documentElement
-    root.classList.add('has-cursor')
-    const target = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
-    const eased = { x: target.x, y: target.y }
-    let frame = 0
-
-    function move(event: PointerEvent) {
-      target.x = event.clientX
-      target.y = event.clientY
-      const hit = (event.target as Element | null)?.closest?.('[data-cursor]')
-      const next = hit?.getAttribute('data-cursor') ?? ''
-      setLabel((current) => (current === next ? current : next))
-      const link = (event.target as Element | null)?.closest?.('a,button,summary,input,select,textarea')
-      ring.current?.classList.toggle('is-link', Boolean(link))
-    }
-
-    function tick() {
-      eased.x += (target.x - eased.x) * 0.12
-      eased.y += (target.y - eased.y) * 0.12
-      if (dot.current) dot.current.style.transform = `translate3d(${target.x}px,${target.y}px,0) translate(-50%,-50%)`
-      if (ring.current) ring.current.style.transform = `translate3d(${eased.x}px,${eased.y}px,0) translate(-50%,-50%)`
-      frame = requestAnimationFrame(tick)
-    }
-
-    window.addEventListener('pointermove', move, { passive: true })
-    frame = requestAnimationFrame(tick)
-    return () => {
-      root.classList.remove('has-cursor')
-      window.removeEventListener('pointermove', move)
-      cancelAnimationFrame(frame)
-    }
-  }, [])
-
-  return (
-    <div className="cursor" aria-hidden="true">
-      <div className="cursor-dot" ref={dot} />
-      <div className={label ? 'cursor-ring is-pill' : 'cursor-ring'} ref={ring}>
-        <span>{label}</span>
-      </div>
-    </div>
-  )
-}
 
 /** Right-hand section rail (>=1024px) with mono labels and an active dot. */
 function Rail({ sections }: { sections: RailSection[] }) {
@@ -225,7 +175,6 @@ export function MotionLayer({ sections }: { sections: RailSection[] }) {
   return (
     <>
       <Preloader />
-      <Cursor />
       <Rail sections={sections} />
     </>
   )

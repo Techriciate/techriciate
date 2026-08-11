@@ -135,20 +135,6 @@ html:not(.js) .masked .word { transform:none; }
 .is-in .ul path { stroke-dashoffset:0; }
 [data-tone='navy'] .ul { color:#7FD4E8; }
 
-/* ---------- custom cursor ---------- */
-.cursor { display:none; }
-html.has-cursor .cursor { display:block; }
-html.has-cursor,html.has-cursor a,html.has-cursor button,html.has-cursor summary { cursor:none; }
-.cursor-dot,.cursor-ring { position:fixed; top:0; left:0; z-index:96; pointer-events:none; will-change:transform; }
-.cursor-dot { width:6px; height:6px; border-radius:50%; background:#0B7FA0; }
-.cursor-ring { display:grid; place-items:center; width:28px; height:28px; border:1px solid rgba(11,127,160,.45); border-radius:999px; transition:width .3s,height .3s,background .3s,border-color .3s; }
-.cursor-ring.is-link { width:42px; height:42px; }
-.cursor-ring span { font:500 .6rem var(--font-mono),monospace; letter-spacing:.14em; white-space:nowrap; color:var(--primary-foreground); opacity:0; }
-.cursor-ring.is-pill { width:112px; height:34px; background:var(--primary); border-color:var(--primary); }
-.cursor-ring.is-pill span { opacity:1; }
-@media (hover: none) and (pointer: coarse) {
-  .cursor-dot, .cursor-ring { display: none !important; }
-}
 
 /* ---------- section rail + header progress ---------- */
 .rail { display:none; }
