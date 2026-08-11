@@ -57,26 +57,18 @@ export function HomePage() {
           <HeroVisual />
         </section>
 
-        <div className="marquee" aria-label="Capabilities">
-          <div>
-            {Array.from({ length: 4 }).map((_, i) => (
-              <span key={i}>
-                Custom websites <b>{'</>'}</b> E-commerce <b>{'</>'}</b> Landing pages <b>{'</>'}</b> Portfolios <b>{'</>'}</b> AI automation <b>{'</>'}</b> Dashboards <b>{'</>'}</b>{' '}
-              </span>
-            ))}
-          </div>
-        </div>
+
 
         <section className="section" id="work" data-tone="paper">
           <SectionHeading
             kicker="(01) SELECTED WORK"
             title="Our work in detail."
             underline="detail"
-            intro="Explore our featured projects, spanning active client builds and custom demonstration prototypes."
+            intro="A mix of live client projects and working demos we built to show what we can do."
           />
           <WorkList />
           <p className="honesty" data-reveal>
-            We maintain transparent updates on all our project stages, from initial concepts to live deployments.
+            Every project on this page shows its real status. No fake case studies.
           </p>
         </section>
 
@@ -85,7 +77,7 @@ export function HomePage() {
             kicker="(02) CAPABILITIES"
             title="What we build."
             underline="build"
-            intro="End-to-end web engineering focused on clean code, intuitive design, and practical automation."
+            intro="Everything from a simple landing page to a full web app with smart automation built in."
           />
           <div className="service-list" data-reveal>
             {site.services.map((service, i) => (
@@ -127,7 +119,7 @@ export function HomePage() {
         </section>
 
         <aside className="manifesto" data-tone="navy" data-reveal>
-          We build web applications engineered to support your long term business growth.
+          We build things that work today and still work when your business is twice the size.
         </aside>
 
         <section className="section" id="process" data-tone="paper">
@@ -210,7 +202,7 @@ export function HomePage() {
               kicker="(07) CONTACT"
               title="Let’s discuss your project."
               underline="project"
-              intro="Tell us about your project goals and requirements. We will review your details and respond with a clear path forward."
+              intro="Tell us what you need and we will get back to you with a clear next step."
             />
             <div className="channels" data-reveal>
               <a href={`mailto:${site.contact.email}`}>
@@ -231,9 +223,9 @@ export function HomePage() {
                 <span /> Currently taking new projects
               </p>
             ) : null}
-            <p className="micro">We review every inquiry carefully and will respond promptly.</p>
+            <p className="micro">We read every message and reply quickly.</p>
             <div className="engage" data-reveal>
-              <h3>Transparent engagement process</h3>
+              <h3>How it works</h3>
               <ol>
                 {ENGAGEMENT.map((step, i) => (
                   <li key={step}>
@@ -242,7 +234,7 @@ export function HomePage() {
                   </li>
                 ))}
               </ol>
-              <p className="note">We provide clear, upfront estimates tailored to your project requirements.</p>
+              <p className="note">You get a clear quote before any work starts. No surprises.</p>
             </div>
           </div>
           <ContactForm />

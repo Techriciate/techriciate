@@ -9,12 +9,12 @@ const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.techriciate.com'),
-  title: { default: 'Techriciate — Digital Agency | Engineering intelligence.', template: '%s · Techriciate' },
-  description: 'Techriciate designs and codes custom websites, e-commerce, and AI automation for businesses done settling for templates. Engineering intelligence.',
-  openGraph: { title: 'Techriciate — Digital Agency', description: 'Your business, engineered for the web.', type: 'website', locale: 'en_US' },
+  title: { default: 'Techriciate | Custom Websites, E-Commerce & AI Tools', template: '%s · Techriciate' },
+  description: 'Techriciate builds custom websites, online stores, and practical AI tools for businesses that want more than a template.',
+  openGraph: { title: 'Techriciate | Digital Agency', description: 'Custom websites and web apps built from scratch for your business.', type: 'website', locale: 'en_US' },
 }
 
-export const viewport: Viewport = { colorScheme: 'light', themeColor: '#F6F8F9', width: 'device-width', initialScale: 1 }
+export const viewport: Viewport = { colorScheme: 'light', themeColor: '#F9F7F4', width: 'device-width', initialScale: 1 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

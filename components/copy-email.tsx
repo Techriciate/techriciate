@@ -18,7 +18,7 @@ export function CopyEmail({ email, children }: { email: string; children: React.
       }}
     >
       {children}
-      <span aria-live="polite">{copied ? ' — copied' : ''}</span>
+      <span aria-live="polite">{copied ? ' Copied!' : ''}</span>
     </button>
   )
 }
