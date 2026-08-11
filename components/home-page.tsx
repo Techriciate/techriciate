@@ -77,7 +77,7 @@ export function HomePage() {
             kicker="(02) CAPABILITIES"
             title="What we build."
             underline="build"
-            intro="Everything from a simple landing page to a full web app with smart automation built in."
+            intro="We handle everything from lightweight marketing pages focused on conversion to comprehensive operational dashboards with integrated workflows."
           />
           <div className="service-list" data-reveal>
             {site.services.map((service, i) => (
@@ -119,7 +119,7 @@ export function HomePage() {
         </section>
 
         <aside className="manifesto" data-tone="navy" data-reveal>
-          We build things that work today and still work when your business is twice the size.
+          We architect software to handle your current operations smoothly, while keeping the data structures flexible enough to support your next major growth phase.
         </aside>
 
         <section className="section" id="process" data-tone="paper">
@@ -143,21 +143,21 @@ export function HomePage() {
             <div className="studio-story" data-reveal>
               <h3>Who we are</h3>
               <p>
-                Techriciate was founded to provide an alternative to off-the-shelf website templates. We build custom web applications focused on performance, maintainability, and clean design.
+                Techriciate was established to help companies break free from the constraints of rigid website builders. We engineer bespoke platforms that are specifically tailored to handle your unique data models and internal processes.
               </p>
               <h3>Our background</h3>
               <p>
-                With backgrounds in software engineering and digital agencies, we bring hands-on development experience to every project. We pair solid web fundamentals with practical AI tools that deliver real value.
+                Our founders spent years writing production code at digital agencies before realizing that most clients were being sold bloated architectures they didn't need. We built this studio to prioritize lean, maintainable engineering—combining strict web fundamentals with targeted automation scripts that actually reduce your daily manual workload.
               </p>
             </div>
             <div className="studio-cards" data-reveal>
               <article className="navy-card">
                 <p className="kicker">VISION</p>
-                <p>Making professional, custom-coded web software accessible and reliable for growing businesses.</p>
+                <p>To provide growing businesses with the kind of robust, custom-engineered software infrastructure usually reserved for enterprise tech companies.</p>
               </article>
               <article className="paper-card">
                 <p className="kicker">MISSION</p>
-                <p>We build websites, web applications, and workflow automations that streamline operations and support growth.</p>
+                <p>Designing digital systems that directly integrate with your operations, replacing fragmented spreadsheets and off-the-shelf plugins with a unified, high-performance platform.</p>
               </article>
             </div>
           </div>
@@ -202,7 +202,7 @@ export function HomePage() {
               kicker="(07) CONTACT"
               title="Let’s discuss your project."
               underline="project"
-              intro="Tell us what you need and we will get back to you with a clear next step."
+              intro="Provide a brief overview of your technical requirements and we will follow up to outline a concrete execution plan."
             />
             <div className="channels" data-reveal>
               <a href={`mailto:${site.contact.email}`}>
@@ -223,7 +223,7 @@ export function HomePage() {
                 <span /> Currently taking new projects
               </p>
             ) : null}
-            <p className="micro">We read every message and reply quickly.</p>
+            <p className="micro">Our technical team reviews every inquiry directly to ensure we provide an accurate assessment.</p>
             <div className="engage" data-reveal>
               <h3>How it works</h3>
               <ol>
@@ -234,7 +234,7 @@ export function HomePage() {
                   </li>
                 ))}
               </ol>
-              <p className="note">You get a clear quote before any work starts. No surprises.</p>
+              <p className="note">We deliver a detailed, fixed-price proposal specifying the exact scope of engineering before initiating development.</p>
             </div>
           </div>
           <ContactForm />

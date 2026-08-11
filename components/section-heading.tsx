@@ -1,4 +1,3 @@
-import { Scramble } from '@/components/scramble'
 
 function bare(word: string) {
   return word.replace(/[^\p{L}]/gu, '').toLowerCase()
@@ -37,7 +36,7 @@ export function SectionHeading({
 }) {
   return (
     <header className="section-heading" data-reveal>
-      <Scramble className="kicker" text={kicker} />
+      <p className="kicker">{kicker}</p>
       <h2 className="masked">
         <MaskedWords text={title} underline={underline} />
       </h2>
