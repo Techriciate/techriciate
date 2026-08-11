@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: { title: 'Techriciate | Digital Agency', description: 'Custom websites and web apps built from scratch for your business.', type: 'website', locale: 'en_US' },
 }
 
-export const viewport: Viewport = { colorScheme: 'light', themeColor: '#F9F7F4', width: 'device-width', initialScale: 1 }
+export const viewport: Viewport = { colorScheme: 'light', themeColor: '#F6F8F9', width: 'device-width', initialScale: 1 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
